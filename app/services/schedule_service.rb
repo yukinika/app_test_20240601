@@ -11,7 +11,8 @@ class ScheduleService
     line = @excel_service.read
 
     # バリデーション
-    result = AssiftValidator.contains_pikachu?(text: line)
+    validator = AssiftValidator.new
+    result = validator.contains_pikachu?(text: line)
 
     if result
       # バリデーションに成功したらDBにデータを保存
