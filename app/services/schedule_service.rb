@@ -14,7 +14,8 @@ class ScheduleService
     result = AssiftValidator.contains_pikachu?(text: line)
 
     if result
-      # バリデーションに成功したらDBにデータを保存する処理
+      # バリデーションに成功したらDBにデータを保存
+      insert_schedules(line)
     end
     
     generate_messages(line, result)
@@ -29,6 +30,10 @@ class ScheduleService
   end
 
   private
+
+  def insert_schedules(schedules)
+    # DBにデータを保存する処理
+  end
 
   def generate_messages(line, result)
     messages = []
