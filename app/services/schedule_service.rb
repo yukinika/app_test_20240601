@@ -1,5 +1,5 @@
 class ScheduleService
-  def initialize(excel_service:)
+  def initialize(excel_service: nil)
     @excel_service = excel_service
   end
 
