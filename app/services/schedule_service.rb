@@ -1,6 +1,9 @@
 class ScheduleService
-  def initialize(excel_service:)
+  def initialize(excel_service: nil, section: nil, year: nil, month: nil)
     @excel_service = excel_service
+    @section = section
+    @year = year
+    @month = month
   end
 
   def import
@@ -11,7 +14,8 @@ class ScheduleService
     result = AssiftValidator.contains_pikachu?(text: line)
 
     if result
-      # バリデーションに成功したらDBにデータを保存する処理
+      # バリデーションに成功したらDBにデータを保存
+      insert_schedules(line)
     end
     
     generate_messages(line, result)
@@ -26,6 +30,10 @@ class ScheduleService
   end
 
   private
+
+  def insert_schedules(schedules)
+    # DBにデータを保存する処理
+  end
 
   def generate_messages(line, result)
     messages = []
