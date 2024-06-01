@@ -1,0 +1,38 @@
+<h1>テキストファイルをアップロード</h1>
+<p>SFだと1行目、仙台だと2行目の内容を読み込んで表示</p>
+<p>また読み込んだ文字列に「ピカチュウ」が含まれているか検証する</p>
+
+<%= form_with url: file_uploads_path, local: true, multipart: true, data: { turbo: false } do |form| %>
+  <div>
+    <%= form.radio_button :section, 'SF', checked: true %>
+    <%= form.label :section_SF, 'SF' %>
+    <%= form.radio_button :section, '仙台' %>
+    <%= form.label :section_sendai, '仙台' %>
+  </div>
+
+  <div>
+    <%= form.file_field :file %>
+  </div>
+
+  <div>
+    <%= form.submit 'アップロード' %>
+  </div>
+
+
+
+<% end %>
+
+<% if @line %>
+  <h2>読み込んだ行の内容:</h2>
+  <ul>
+    <% @line.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+
+
+
+
+
