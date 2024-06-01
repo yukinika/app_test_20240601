@@ -1,6 +1,9 @@
 class ScheduleService
-  def initialize(excel_service: nil)
+  def initialize(excel_service: nil, section: nil, year: nil, month: nil)
     @excel_service = excel_service
+    @section = section
+    @year = year
+    @month = month
   end
 
   def import
