@@ -1,5 +1,5 @@
 class ExcelServiceFactory
-  def self.create(section:, file:)
+  def self.build(section:, file:)
     case section
       when 'SF'
         SfExcelService.new(file: file)

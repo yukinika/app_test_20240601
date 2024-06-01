@@ -15,7 +15,7 @@ class FileUploadsController < ApplicationController
   private
 
   def process_file_upload
-    service = ExcelServiceFactory.create(section: params[:section], file: params[:file])
+    service = ExcelServiceFactory.build(section: params[:section], file: params[:file])
     schedule = ScheduleService.new(excel_service: service)
     result = schedule.import
     handle_import_result(result)
