@@ -1,5 +1,6 @@
 module FileReadable
   def initialize(file:)
+    raise ArgumentError, "file cannot be nil" if file.nil?
     @file = file
   end
 
