@@ -1,6 +1,7 @@
 class ScheduleService
-  def initialize(excel_service: nil, section: nil, year: nil, month: nil)
+  def initialize(excel_service: nil, validator:nil, section: nil, year: nil, month: nil)
     @excel_service = excel_service
+    @validator = validator
     @section = section
     @year = year
     @month = month
@@ -11,8 +12,7 @@ class ScheduleService
     line = @excel_service.read
 
     # バリデーション
-    validator = AssiftValidator.new
-    result = validator.contains_pikachu?(text: line)
+    result = @validator.contains_pikachu?(text: line)
 
     if result
       # バリデーションに成功したらDBにデータを保存

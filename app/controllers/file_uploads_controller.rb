@@ -16,7 +16,8 @@ class FileUploadsController < ApplicationController
 
   def process_file_upload
     service = ExcelServiceFactory.build(section: params[:section], file: params[:file])
-    schedule = ScheduleService.new(excel_service: service)
+    validator = AssiftValidator.new
+    schedule = ScheduleService.new(excel_service: service, validator: validator)
     result = schedule.import
     handle_import_result(result)
   end
