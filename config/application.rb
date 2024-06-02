@@ -27,5 +27,6 @@ module AppTest20240601
     # Autoload paths
     config.autoload_paths += %W(#{config.root}/app/factories)
     config.autoload_paths += %W(#{config.root}/app/validators)
+    config.autoload_paths += Dir[Rails.root.join('app', 'services', '**/')]
   end
 end
