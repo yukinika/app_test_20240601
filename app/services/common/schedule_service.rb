@@ -8,8 +8,7 @@ class ScheduleService
   end
 
   def import
-    raise ArgumentError, "excel_service cannot be nil" if @excel_service.nil?
-    raise ArgumentError, "validator cannot be nil" if @validator.nil?
+    check_dependencies
 
     # ファイル読み込み
     line = @excel_service.read
@@ -26,14 +25,27 @@ class ScheduleService
   end
 
   def get_schedules
+    check_schedule_parameters
     fetch_schedules_from_db
   end
 
   def delete_schedules
+    check_schedule_parameters
     delete_schedules_from_db
   end
 
   private
+
+  def check_dependencies
+    raise "excel_service cannot be nil" if @excel_service.nil?
+    raise "validator cannot be nil" if @validator.nil?
+  end
+
+  def check_schedule_parameters
+    raise "section cannot be nil" if @section.nil?
+    raise "year cannot be nil" if @year.nil?
+    raise "month cannot be nil" if @month.nil?
+  end
 
   def insert_schedules_to_db(schedules)
     # DBにデータを保存する処理
