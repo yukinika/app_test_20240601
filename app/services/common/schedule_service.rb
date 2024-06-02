@@ -16,24 +16,32 @@ class ScheduleService
 
     if result
       # バリデーションに成功したらDBにデータを保存
-      insert_schedules(line)
+      insert_schedules_to_db(line)
     end
     
     generate_messages(line, result)
   end
 
-  def fetch_schedules
-    # DBからデータを取得する処理
+  def get_schedules
+    fetch_schedules_from_db
   end
 
   def delete_schedules
-    # DBからデータを削除する処理
+    delete_schedules_from_db
   end
 
   private
 
-  def insert_schedules(schedules)
+  def insert_schedules_to_db(schedules)
     # DBにデータを保存する処理
+  end
+
+  def fetch_schedules_from_db
+    # DBからデータを取得する処理
+  end
+
+  def delete_schedules_from_db
+    # DBからデータを取得する処理
   end
 
   def generate_messages(line, result)
@@ -41,7 +49,6 @@ class ScheduleService
 
     # ためしにここでIPアドレスを取得してみる
     messages.push("接続元IPアドレス：#{CurrentService.remote_ip}")
-
     messages.push("取得した文字列：#{line}")
 
     if result
