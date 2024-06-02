@@ -4,8 +4,14 @@ class SendaiExcelService
   end
 
   def read
-    lines = @file.read.force_encoding('UTF-8').lines
+    lines = read_excel
     return lines[1].strip if lines.size > 1
     nil
+  end
+
+  private
+
+  def read_excel
+    @file.read.force_encoding('UTF-8').lines
   end
 end
