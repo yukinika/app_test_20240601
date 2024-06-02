@@ -8,6 +8,9 @@ class ScheduleService
   end
 
   def import
+    raise ArgumentError, "excel_service cannot be nil" if @excel_service.nil?
+    raise ArgumentError, "validator cannot be nil" if @validator.nil?
+
     # ファイル読み込み
     line = @excel_service.read
 
